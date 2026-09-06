@@ -5,6 +5,7 @@ export default function SettingsMenu({ navigation }) {
   const items = [
     { label: 'App Settings', screen: 'Settings' },
     { label: 'Notifications', screen: 'Notifications' },
+    { label: 'Persistence Evidence', screen: 'StorageEvidence' },
     { label: 'Favorites / Profile', screen: 'Favorites' },
     { label: 'Back to Home', screen: 'Home' },
   ];
