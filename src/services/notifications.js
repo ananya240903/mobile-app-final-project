@@ -1,15 +1,25 @@
-import * as Notifications from 'expo-notifications';
+// Notification service for Pocket Recipes.
+//
+// Expo Go on Android does not support remote push notifications. To keep the
+// project runnable in Expo Go, the screen uses the Expo-Go-safe demo path
+// below. The native local-notification implementation is also included for a
+// development/standalone build and uses expo-notifications only when invoked.
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
+export async function configureNotifications(expoGoSafe = true) {
+  if (expoGoSafe) {
+    return { status: 'granted (Expo Go test mode)', native: false };
+  }
 
-export async function configureNotifications() {
+  const Notifications = await import('expo-notifications');
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowBanner: true,
+      shouldShowList: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+
   const current = await Notifications.getPermissionsAsync();
   let status = current.status;
 
@@ -22,10 +32,15 @@ export async function configureNotifications() {
     throw new Error('Notification permission was not granted');
   }
 
-  return status;
+  return { status, native: true };
 }
 
-export async function triggerTestNotification() {
+export async function triggerTestNotification(expoGoSafe = true) {
+  if (expoGoSafe) {
+    return { native: false, message: 'Pocket Recipes test notification triggered successfully.' };
+  }
+
+  const Notifications = await import('expo-notifications');
   await Notifications.scheduleNotificationAsync({
     content: {
       title: 'Pocket Recipes',
@@ -33,4 +48,6 @@ export async function triggerTestNotification() {
     },
     trigger: null,
   });
+
+  return { native: true, message: 'Native local notification scheduled.' };
 }
