@@ -9,6 +9,7 @@ import FavoritesScreen from './src/screens/FavoritesScreen';
 import SettingsMenu from './src/components/SettingsMenu';
 import SettingsScreen from './src/screens/SettingsScreen';
 import NotificationsScreen from './src/screens/NotificationsScreen';
+import StorageEvidenceScreen from './src/screens/StorageEvidenceScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="SettingsMenu" component={SettingsMenu} options={{ title: 'Menu' }} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="StorageEvidence" component={StorageEvidenceScreen} options={{ title: 'Persistence Evidence' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
