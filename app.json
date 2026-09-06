@@ -7,7 +7,6 @@
     "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.ananya240903.pocketrecipes"
-    },
-    "plugins": ["expo-notifications"]
+    }
   }
 }
