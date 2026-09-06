@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Pocket Recipes",
+    "slug": "pocket-recipes",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.ananya240903.pocketrecipes"
+    },
+    "plugins": ["expo-notifications"]
+  }
+}
